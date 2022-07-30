@@ -44,28 +44,16 @@ let currentDate = document.querySelector("#time");
 let currentTime = new Date();
 currentDate.innerHTML = showTime(currentTime);
 
-function showTemperature(response) {
-  let cityInput = response.data.name;
-  let currentTemperature = Math.round(response.data.main.temp);
-
-  let currentTemper = document.querySelector("#temper");
-  currentTemper.innerHTML = currentTemperature;
-}
-
 function searchCity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#input-city");
   cityInput = cityInput.value;
-
   cityInput = cityInput[0].toUpperCase() + cityInput.slice(1).toLowerCase();
-  let apiKey = "87f9bd8acd71337cb736013623f183c8";
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=${units}`;
+
+  console.log(cityInput);
 
   let currentCity = document.querySelector("#city");
   currentCity.innerHTML = ` ${cityInput}`;
-
-  axios.get(apiUrl).then(showTemperature);
 }
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", searchCity);
